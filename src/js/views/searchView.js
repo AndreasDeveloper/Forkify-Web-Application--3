@@ -1,3 +1,4 @@
+// --- IMPORTING MODELS --- \\
 import { elements } from './base';
 
 // Exporting Function | Getting input from the search bar
@@ -28,7 +29,6 @@ const limitRecipeTitle = (title, limit = 17) => { // 17 is limit default
     } 
     return title;
 };
-
 
 // Private Function | Getting markup ready with API data
 const renderRecipe = recipe => { 

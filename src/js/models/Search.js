@@ -1,4 +1,4 @@
-// Importing Packages
+// --- IMPORTING MODELS | PACKAGES --- \\
 import axios from 'axios';
 
 export default class Search {

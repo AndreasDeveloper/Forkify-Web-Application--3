@@ -7,7 +7,6 @@ import * as searchView from  './views/searchView'   // THIRD WAY OF IMPORTING | 
 console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and ${searchView.multiply(3, 5)}. ${str}.`);    // THIRD WAY OF USING IMPORTS
 */
 
-
 // --- IMPORTING MODELS --- \\
 import Search from './models/Search';
 import * as searchView from './views/searchView';
@@ -40,7 +39,6 @@ const controlSearch = async () => {
         searchView.renderResults(state.search.recipes);
     }
 }
-
 
 // -- EVENT LISTENER -- | Search Form
 elements.searchForm.addEventListener('submit', e => {

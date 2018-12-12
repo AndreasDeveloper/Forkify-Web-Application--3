@@ -47,3 +47,13 @@ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault(); // Prevents page from reloading each time when we click element(e)
     controlSearch();
 });
+
+// -- EVENT LISTENER -- | Button Pagination | Next and Prev
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline'); // Find the closest element to the button inline
+    if (btn) { // if we have a button showing
+        const goToPage = parseInt(btn.dataset.goto, 10); // accessing button data (page num in this case) | 10 is a base (0 - 9), if we insert 2, we are using binary base (0,1)
+        searchView.clearResults();
+        searchView.renderResults(state.search.recipes, goToPage);
+    }
+});

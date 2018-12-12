@@ -12,6 +12,7 @@ export const clearInput = () => {
 // Exporting Function | Clearing HTML ul elements from the result bar
 export const clearResults = () => {
     elements.searchResultList.innerHTML = '';
+    elements.searchResPages.innerHTML = '';
 };
 
 // Private Function | Reducing the title ti 17 words per ul element | ALGORITHM
@@ -48,6 +49,51 @@ const renderRecipe = recipe => {
     elements.searchResultList.insertAdjacentHTML('beforeend', markup);  // Inserting markup to html main file
 };
 
-export const renderResults = recipes => {   // recipes is a parameter/arg
-    recipes.forEach(renderRecipe);  // loop trough all 30 results and call renderRecipe function for each one of them
+// Private Function | Creating buttons
+const createButton = (page, type) => { // Page number, and type of the button (forward, backward buttons marked as 'prev' and 'next')
+    return `
+    <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1 : page + 1}>
+    <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+        <svg class="search__icon">
+            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+        </svg>
+    </button>
+    `
+};
+
+// Private Function | Rendering page buttons | PAGINATION
+const renderButtons = (page, numResults, resPerPage) => {   // Page, number of results, results per page
+    const pages = Math.ceil(numResults / resPerPage);
+
+    // Declaring Btn variables
+    let button;
+
+    // Buttons For Pagination
+    if (page === 1 && pages > 1) {
+        // Only button to go to the next page
+        button = createButton(page, 'next');
+    } else if (page < pages ) {
+        // Both buttons
+        button = `
+                ${button = createButton(page, 'prev')}
+                ${button = createButton(page, 'next')}
+                `
+    } else if (page === pages && pages > 1) {    // else if we are on the last page (pages)
+        // Only button to go to the previous page
+        button = createButton(page, 'prev');
+    }
+
+    elements.searchResPages.insertAdjacentHTML('afterbegin', button);
+};
+
+// Exporting Function | - Rendering search results
+export const renderResults = (recipes, page = 1, resPerPage = 10) => {   // recipes is a parameter/arg
+    // Render results of current page
+    const start = (page - 1) * resPerPage;
+    const end = page * resPerPage;
+
+    recipes.slice(start, end).forEach(renderRecipe);  // loop trough all 30 results and call renderRecipe function for each one of them
+
+    // Render pagination buttons
+    renderButtons(page, recipes.length, resPerPage);
 };

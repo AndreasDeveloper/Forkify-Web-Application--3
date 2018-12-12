@@ -3,11 +3,12 @@ export const elements = {
     searchForm: document.querySelector('.search'),
     searchInput: document.querySelector('.search__field'),
     searchResultList: document.querySelector('.results__list'),
-    searchResults: document.querySelector('.results')
+    searchResults: document.querySelector('.results'),
+    searchResPages: document.querySelector('.results__pages')
 };
 
 export const elementStrings = {
-    loader: 'loader'
+    loader: 'loader'    // Class name | connecting with css
 };
 
 // --- EXPORTING FUNCTION | - Loader Function --- \\

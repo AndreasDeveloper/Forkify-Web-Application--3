@@ -15,12 +15,10 @@ export default class Recipe {
             this.img = res.data.recipe.image_url;
             this.url = res.data.recipe.source_url;
             this.ingredients = res.data.recipe.ingredients;
-            console.log(res);
         } catch (error) {
             console.log(error);
         }
     }
-
     calcTime() {
         // Assuming that we need 15 for each 3 ingredients
         const numIng = this.ingredients.length;

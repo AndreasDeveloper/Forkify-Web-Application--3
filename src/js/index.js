@@ -18,8 +18,11 @@ import { elements, renderLoader, clearLoader } from './views/base';
 // - current recipe object
 // - shopping list object
 // - liked recipes
-const state = {};
+const state = {}; // Global state obj
 
+// -------------------------------
+//  SEARCH FUNCTION | ARCHITECTURE
+// -------------------------------
 // FUNCTION | - Search Function | SEARCH CONTROLLER
 const controlSearch = async () => {
     // Get a query from the view
@@ -28,18 +31,23 @@ const controlSearch = async () => {
     if (query) {
         // New Search object and add to the state
         state.search = new Search(query);
-
+        
         // Prepare UI for results | pre-loader
         searchView.clearInput();
         searchView.clearResults();
         renderLoader(elements.searchResults);
 
-        // Search for recipes
-        await state.search.getResults(); 
+        try {
+            // Search for recipes
+            await state.search.getResults(); 
 
-        // Render results on UI
-        clearLoader();
-        searchView.renderResults(state.search.recipes);
+            // Render results on UI
+            clearLoader();
+            searchView.renderResults(state.search.recipes);
+        } catch (error) {
+            console.log(error);
+            clearLoader();
+        }
     }
 }
 
@@ -59,7 +67,36 @@ elements.searchResPages.addEventListener('click', e => {
     }
 });
 
+// -------------------------------
+//  RECIPE FUNCTION | ARCHITECTURE
+// -------------------------------
 // FUNCTION | - Recipe Function | RECIPE CONTROLLER
-const r = new Recipe(46956);
-r.getRecipe();
-console.log(r);
+const controlRecipe = async () => {
+    // Get ID from url
+    const id = window.location.hash.replace('#', ''); // Getting hash from url window (#NUMBERS)
+    console.log(id);
+
+    if (id) { // If id is showing in url/on window
+        // Prepare UI for changes
+
+        // Create new recipe object
+        state.recipe = new Recipe(id);
+
+        try {
+            // Get recipe data
+            await state.recipe.getRecipe();
+            
+            // Calculate time and servings
+            state.recipe.calcTime();
+            state.recipe.calcServings();
+            
+            // Render recipe
+            console.log(state.recipe);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
+
+// 2 EVENT LISTENERS | Changing the hash (URL HASH) and
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));

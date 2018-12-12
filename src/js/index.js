@@ -9,6 +9,7 @@ console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and $
 
 // --- IMPORTING MODELS --- \\
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
@@ -19,7 +20,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
 // - liked recipes
 const state = {};
 
-// FUNCTION | - Search Function
+// FUNCTION | - Search Function | SEARCH CONTROLLER
 const controlSearch = async () => {
     // Get a query from the view
     const query = searchView.getInput(); // Getting input from search bar and seraching exact elements
@@ -57,3 +58,8 @@ elements.searchResPages.addEventListener('click', e => {
         searchView.renderResults(state.search.recipes, goToPage);
     }
 });
+
+// FUNCTION | - Recipe Function | RECIPE CONTROLLER
+const r = new Recipe(46956);
+r.getRecipe();
+console.log(r);

@@ -1,4 +1,4 @@
 // --- CONFIG JS FILE --- \\
 
 // -- API KEY -- \\
-export const apikey = '0684654b0c1139a172b525f6e160b2ee';
+export const apikey = '2413e7df4f38691917e8a5e6bca24f54';

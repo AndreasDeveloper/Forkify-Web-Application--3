@@ -31,6 +31,7 @@ export default class Recipe {
     parseIngredients() {
         const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds']; // Long name
         const unitShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound']; // Short name
+        const units = [...unitShort, 'kg', 'g']; // Using destructuring to insert elements from unitShort array into the units array (without having array inside of an array)
 
         const newIngredients = this.ingredients.map(el => { // el is EACH element (string) in ingredients data that api provided, mapped trough
             // Uniform units (units should be the same)
@@ -43,7 +44,7 @@ export default class Recipe {
 
             // Parse ingredients into count, unit and ingredient itself
             const arrIng = ingredient.split(' '); // if there is a space between the words, each word will become a new element
-            const unitIndex = arrIng.findIndex(el2 => unitShort.includes(el2));
+            const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
 
             let objIng;
             if (unitIndex > -1) {

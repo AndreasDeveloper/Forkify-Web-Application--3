@@ -11,6 +11,7 @@ console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and $
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
 // Global State of the app 
@@ -35,7 +36,7 @@ const controlSearch = async () => {
         // Prepare UI for results | pre-loader
         searchView.clearInput();
         searchView.clearResults();
-        renderLoader(elements.searchResults);
+        renderLoader(elements.searchResults); // elements.searchResult is a parent element for the loader
 
         try {
             // Search for recipes
@@ -78,6 +79,11 @@ const controlRecipe = async () => {
 
     if (id) { // If id is showing in url/on window
         // Prepare UI for changes
+        recipeView.clearRecipe();
+        renderLoader(elements.recipe); // elements.recipe is a parent element for the loader
+
+        // Higlight selected search item
+        if (state.search) searchView.higlightSelected(id);
 
         // Create new recipe object
         state.recipe = new Recipe(id);
@@ -92,7 +98,9 @@ const controlRecipe = async () => {
             state.recipe.calcServings();
             
             // Render recipe
-            console.log(state.recipe);
+            clearLoader();
+            recipeView.renderRecipe(state.recipe);
+
         } catch (error) {
             console.log(error);
         }

@@ -107,5 +107,20 @@ const controlRecipe = async () => {
     }
 };
 
-// 2 EVENT LISTENERS | Changing the hash (URL HASH) and
+// 2 EVENT LISTENERS | Changing the hash (URL HASH) and adding loader
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+// EVENT LISTENER | Handling recipe button clicks (servings, like)
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) { // Selecting any btn-decrease child (if clicking svg or use elements in html instead of button directly)
+        // Decrease button is clicked
+        if (state.recipe.servings > 1) {
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);
+        }
+    } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+        // Increase button is clicked
+        state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe);
+    }
+});

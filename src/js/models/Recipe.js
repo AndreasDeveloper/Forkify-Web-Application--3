@@ -80,9 +80,18 @@ export default class Recipe {
                     ingredient: ingredient // or just ingredient in obj
                 }
             }
-            
             return objIng;
         });
         this.ingredients = newIngredients;
+    }
+    updateServings(type) {
+        // Servings
+        const newServings = type === 'dec' ? this.servings -1 : this.servings + 1; // newServings will either get this.servings -1 or this.servings +1 value
+
+        // Ingredients
+        this.ingredients.forEach(ing => {
+            ing.count *= (newServings / this.servings); // multiply ing.count by (parentheses values)
+        });
+        this.servings = newServings;
     }
 };

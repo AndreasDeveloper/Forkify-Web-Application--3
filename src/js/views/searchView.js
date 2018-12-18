@@ -15,17 +15,18 @@ export const clearResults = () => {
     elements.searchResPages.innerHTML = '';
 };
 
+// Exporting Function | Higlighting Selected Elements
 export const higlightSelected = id => {
     // Removes --active grey state from links
     const resultsArr = Array.from(document.querySelectorAll('.results__link'));
     resultsArr.forEach(el => {
         el.classList.remove('results__link--active');
     });
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href="#${id}"]`).classList.add('results__link--active');
 };
 
-// Private Function | Reducing the title ti 17 words per ul element | ALGORITHM
-const limitRecipeTitle = (title, limit = 17) => { // 17 is limit default
+// Exporting Function | Reducing the title ti 17 words per ul element | ALGORITHM
+export const limitRecipeTitle = (title, limit = 17) => { // 17 is limit default
     const newTitle = []; // adding elements to const var arr is not actually mutating it
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => { // acc = accumulator, cur = current

@@ -1,5 +1,5 @@
 // --- IMPORTING MODELS | PACKAGES --- \\
-import uniqid from 'uniqid';
+import uniqid from 'uniqid'; // Unique ID
 
 // Export Class | Class that holds shopping list
 export default class List {

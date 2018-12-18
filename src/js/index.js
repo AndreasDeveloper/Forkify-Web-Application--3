@@ -10,8 +10,10 @@ console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and $
 // --- IMPORTING MODELS --- \\
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
 // Global State of the app 
@@ -20,6 +22,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
 // - shopping list object
 // - liked recipes
 const state = {}; // Global state obj
+window.state = state;
 
 // -------------------------------
 //  SEARCH FUNCTION | ARCHITECTURE
@@ -122,5 +125,39 @@ elements.recipe.addEventListener('click', e => {
         // Increase button is clicked
         state.recipe.updateServings('inc');
         recipeView.updateServingsIngredients(state.recipe);
+    } else if (e.target.matches('.recipe__btn, .recipe__btn--add *')) {
+        controlList();
     }
 });
+
+// -------------------------------
+//  LIST FUNCTION | ARCHITECTURE
+// -------------------------------
+const controlList = () => {
+    // Create a new list if there is none yet
+    if (!state.list) state.list = new List();
+    
+    // Add each ingredient to the list and UI
+    state.recipe.ingredients.forEach(el => {
+        const item = state.list.addItem(el.count, el.unit, el.ingredient);
+        listView.renderItem(item);
+    });
+};
+
+// EVENT LISTENER | Handle delete and update list item events
+elements.shopping.addEventListener('click', e => {
+    const id = e.target.closest('.shopping__item').dataset.itemid;
+
+    // Handle the delete button
+    if (e.target.matches('.shopping__delete, .shopping__delete *')) {
+        // Delete from the state
+        state.list.deleteItem(id);
+
+        // Delete from the UI
+        listView.deleteItem(id);
+    // Handle the count update
+    } else if (e.target.matches('.shopping__count-value')) { // No need of selecting its children, there is none
+        const val = parseFloat(e.target.value);
+        state.list.updateCount(id, val);
+    }
+}); 

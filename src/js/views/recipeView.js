@@ -7,17 +7,19 @@ export const clearRecipe = () => {
     elements.recipe.innerHTML = '';
 };
 
+// Private Function | Formating Count numbers
 const formatCount = count => {
     if (count) {
-        const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10)); // Using destructuring with int and dec (integer, decimal), convert them to strings, split them with . and parse them back to numbers
+        const newCount = Math.round(count * 10000) / 10000;
+        const [int, dec] = newCount.toString().split('.').map(el => parseInt(el, 10)); // Using destructuring with int and dec (integer, decimal), convert them to strings, split them with . and parse them back to numbers
         
-        if (!dec) return count; // If there is no decimal, return original count
+        if (!dec) return newCount; // If there is no decimal, return original count
         
         if (int === 0) {
-            const fr = new Fraction(count);
+            const fr = new Fraction(newCount);
             return `${fr.numerator}/${fr.denominator}`;
         } else {
-            const fr = new Fraction(count - int);
+            const fr = new Fraction(newCount - int);
             return `${int} ${fr.numerator}/${fr.denominator}`;
         }
     }

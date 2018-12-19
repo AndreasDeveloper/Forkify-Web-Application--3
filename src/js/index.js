@@ -24,7 +24,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
 // - shopping list object
 // - liked recipes
 const state = {}; // Global state obj
-window.state = state;
 
 // --------------------------------------------
 //  SEARCH FUNCTION | ARCHITECTURE | CONTROLLER
@@ -80,7 +79,6 @@ elements.searchResPages.addEventListener('click', e => {
 const controlRecipe = async () => {
     // Get ID from url
     const id = window.location.hash.replace('#', ''); // Getting hash from url window (#NUMBERS)
-    console.log(id);
 
     if (id) { // If id is showing in url/on window
         // Prepare UI for changes

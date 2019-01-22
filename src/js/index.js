@@ -16,7 +16,7 @@ import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
 import * as likesView from './views/likesView';
-import { elements, renderLoader, clearLoader } from './views/base';
+import { elements, renderLoader, clearLoader, elementStrings } from './views/base';
 
 // Global State of the app 
 // - search object
@@ -125,6 +125,8 @@ const controlList = () => {
         const item = state.list.addItem(el.count, el.unit, el.ingredient);
         listView.renderItem(item);
     });
+    // Rendering Delete All Items in list button after items were added to the list
+    //listView.renderDeleteBtn();
 };
 
 // EVENT LISTENER | Handle delete and update list item events
@@ -144,6 +146,11 @@ elements.shopping.addEventListener('click', e => {
         state.list.updateCount(id, val);
     }
 }); 
+
+// EVENT LISTENER | Deletes all of the items inside of a list
+elements.deleteAllBtn.addEventListener('click', () => {
+    listView.deleteItems();
+});
 
 // --------------------------------------------
 //  LIKES FUNCTION | ARCHITECTURE | CONTROLLER
@@ -185,7 +192,7 @@ window.addEventListener('load', () => {
 // --------------------------------------------
 //  GLOBAL|MULTI EVENT LISTENER
 // --------------------------------------------
-// EVENT LISTENER | Handling recipe button clicks (servings, like)
+// EVENT LISTENER | Handling recipe button clicks (servings, likes)
 elements.recipe.addEventListener('click', e => {
     if (e.target.matches('.btn-decrease, .btn-decrease *')) { // Selecting any btn-decrease child (if clicking svg or use elements in html instead of button directly)
         // Decrease button is clicked

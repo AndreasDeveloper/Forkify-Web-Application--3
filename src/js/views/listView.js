@@ -25,3 +25,9 @@ export const deleteItem = id => {
     const item = document.querySelector(`[data-itemid="${id}"]`);
     item.parentElement.removeChild(item);
 };
+
+// Delete all of the items inside of a ul on UI | Function Export
+export const deleteItems = () => {
+    const items = document.querySelector('.shopping__list');
+    items.innerHTML = ''; 
+}

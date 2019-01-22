@@ -122,12 +122,19 @@ const controlList = () => {
     
     // Add each ingredient to the list and UI
     state.recipe.ingredients.forEach(el => {
-        const item = state.list.addItem(el.count, el.unit, el.ingredient);
+        const item = state.list.addItem(el.count, el.unit, el.ingredient); // Give each list item an unique id
         listView.renderItem(item);
     });
     // Rendering Delete All Items in list button after items were added to the list
     listView.renderDeleteBtn();
+
+    // Event Listener | Add Custom Item
+    elements.addNewItemBtn.addEventListener('click', () => {
+        const itemI = state.list.addItem(0, elements.addItemUnit.value, elements.addItemDescription.value);
+        listView.renderAddedInput(itemI);
+    }); 
 };
+
 
 // EVENT LISTENER | Handle delete and update list item events
 elements.shopping.addEventListener('click', e => {

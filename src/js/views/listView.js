@@ -1,5 +1,6 @@
 // --- IMPORTING MODELS --- \\
 import { elements } from './base';
+import uniqid from 'uniqid'; // Unique ID
 
 // Render Item UI | Function Export
 export const renderItem = item => {
@@ -20,10 +21,30 @@ export const renderItem = item => {
     elements.shopping.insertAdjacentHTML('beforeend', markup); // beforeend - one el is added after the other in HTML
 };
 
+// Render Custom added items to the shopping list | Function Export
+export const renderAddedInput = itemI => {
+    const markup3 = `
+    <li class="shopping__item" data-itemid=${itemI.id}>
+        <div class="shopping__count">
+            <input type="number" value="${itemI.count}" step="${itemI.count}" class="shopping__count-value">
+            <p>${itemI.unit}</p>
+        </div>
+        <p class="shopping__description">${itemI.ingredient}</p>
+        <button class="shopping__delete btn-tiny">
+            <svg>
+                <use href="img/icons.svg#icon-circle-with-cross"></use>
+            </svg>
+        </button>
+    </li> 
+    `;
+    elements.shopping.insertAdjacentHTML('afterbegin', markup3);
+};
+
+// Rendering Delete All Button | Function Export
 export const renderDeleteBtn = () => {
     const markup2 = `
     <button class="btn-small recipe__btn delete-list-btn" style="margin-top: 5rem;">
-        <span class="delete-list-btn">Delete All</span>
+        <span>Delete All</span>
     </button>
     `;
     elements.deleteBtnWrapper.insertAdjacentHTML('afterbegin', markup2);

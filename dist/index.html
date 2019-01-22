@@ -345,8 +345,12 @@
             <h2 class="heading-2">My Shopping List</h2>
 
             <ul class="shopping__list">
-
+                <input type="text" placeholder="Insert Item Unit" class="add-item__unit">
+                <input type="text" placeholder="Insert Item Description" class="add-item__description">
                 <!--
+                <button class="btn-small recipe__btn add-btn">
+                    <span>Add Item</span>
+                </button>
                 <li class="shopping__item">
                     <div class="shopping__count">
                         <input type="number" value="500" step="100">
@@ -427,9 +431,13 @@
                 </li>
                 -->
             </ul>
-            <button class="btn-small recipe__btn delete-list-btn ">
-                <span class="delete-list-btn">Delete All</span>
-            </button>
+            <div class="deleteBtn-wrapper">
+                <!-- 
+                <button class="btn-small recipe__btn delete-list-btn" style="margin-top: 5rem;">
+                    <span>Delete All</span>
+                </button>
+                -->
+            </div>
             <div class="copyright">
                 &copy; by Jonas Schmedtmann. Powered by
                 <a href="http://food2fork.com" target="_blank" class="link">Food2Fork.com</a>.

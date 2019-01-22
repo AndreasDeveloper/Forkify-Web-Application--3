@@ -40,7 +40,7 @@ body {
       width: 100%;
       margin: 0;
       border-radius: 0; } }
-  
+      
 .btn, .btn-small, .btn-small:link, .btn-small:visited {
   background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
   border-radius: 10rem;
@@ -489,3 +489,10 @@ body {
   .shopping__item:hover .shopping__delete {
     opacity: 1;
     visibility: visible; }
+
+    .add-item__description {
+      width: 100%;
+    }
+    .add-item__unit {
+      width: 45%;
+    }

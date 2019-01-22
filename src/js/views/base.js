@@ -10,7 +10,10 @@ export const elements = {
     likesMenu: document.querySelector('.likes__field'),
     likesList: document.querySelector('.likes__list'),
     deleteBtnWrapper: document.querySelector('.deleteBtn-wrapper'),
-    deleteAllBtn: document.querySelector('.delete-list-btn')
+    deleteAllBtn: document.querySelector('.delete-list-btn'),
+    addNewItemBtn: document.querySelector('.add-btn'),
+    addItemUnit: document.querySelector('.add-item__unit'),
+    addItemDescription: document.querySelector('.add-item__description')
 };
 
 export const elementStrings = {

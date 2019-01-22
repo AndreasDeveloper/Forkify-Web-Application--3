@@ -126,7 +126,7 @@ const controlList = () => {
         listView.renderItem(item);
     });
     // Rendering Delete All Items in list button after items were added to the list
-    //listView.renderDeleteBtn();
+    listView.renderDeleteBtn();
 };
 
 // EVENT LISTENER | Handle delete and update list item events
@@ -148,9 +148,19 @@ elements.shopping.addEventListener('click', e => {
 }); 
 
 // EVENT LISTENER | Deletes all of the items inside of a list
+elements.deleteBtnWrapper.addEventListener('click', (event) => {
+    if (event.target.classList.contains('delete-list-btn')) {
+        listView.deleteItems();
+        // Deletes button when items are deleted
+        while (elements.deleteBtnWrapper.firstChild) {
+            elements.deleteBtnWrapper.removeChild(elements.deleteBtnWrapper.firstChild);
+        }
+    }
+});
+/*
 elements.deleteAllBtn.addEventListener('click', () => {
     listView.deleteItems();
-});
+});*/
 
 // --------------------------------------------
 //  LIKES FUNCTION | ARCHITECTURE | CONTROLLER

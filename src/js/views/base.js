@@ -9,6 +9,7 @@ export const elements = {
     shopping: document.querySelector('.shopping__list'),
     likesMenu: document.querySelector('.likes__field'),
     likesList: document.querySelector('.likes__list'),
+    deleteBtnWrapper: document.querySelector('.deleteBtn-wrapper'),
     deleteAllBtn: document.querySelector('.delete-list-btn')
 };
 

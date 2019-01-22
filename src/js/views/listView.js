@@ -20,6 +20,15 @@ export const renderItem = item => {
     elements.shopping.insertAdjacentHTML('beforeend', markup); // beforeend - one el is added after the other in HTML
 };
 
+export const renderDeleteBtn = () => {
+    const markup2 = `
+    <button class="btn-small recipe__btn delete-list-btn" style="margin-top: 5rem;">
+        <span class="delete-list-btn">Delete All</span>
+    </button>
+    `;
+    elements.deleteBtnWrapper.insertAdjacentHTML('afterbegin', markup2);
+};
+
 // Delete Item UI | Function Export
 export const deleteItem = id => {
     const item = document.querySelector(`[data-itemid="${id}"]`);

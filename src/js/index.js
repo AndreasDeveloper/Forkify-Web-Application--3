@@ -127,14 +127,20 @@ const controlList = () => {
     });
     // Rendering Delete All Items in list button after items were added to the list
     listView.renderDeleteBtn();
-
-    // Event Listener | Add Custom Item
-    elements.addNewItemBtn.addEventListener('click', () => {
-        const itemI = state.list.addItem(0, elements.addItemUnit.value, elements.addItemDescription.value);
-        listView.renderAddedInput(itemI);
-    }); 
 };
+// Event Listener | Add Custom Item
+elements.addNewItemBtn.addEventListener('click', () => {
+    if (!state.list) state.list = new List();
+    const itemI = state.list.addItem(0, elements.addItemUnit.value, elements.addItemDescription.value);
+    listView.renderAddedInput(itemI);
 
+    // Resets the input field back to empty after item was added
+    elements.addItemUnit.value = '';
+    elements.addItemDescription.value = '';
+
+    // Rendering Delete All Items in list button after items were added to the list
+    listView.renderDeleteBtn();
+}); 
 
 // EVENT LISTENER | Handle delete and update list item events
 elements.shopping.addEventListener('click', e => {
@@ -164,10 +170,6 @@ elements.deleteBtnWrapper.addEventListener('click', (event) => {
         }
     }
 });
-/*
-elements.deleteAllBtn.addEventListener('click', () => {
-    listView.deleteItems();
-});*/
 
 // --------------------------------------------
 //  LIKES FUNCTION | ARCHITECTURE | CONTROLLER

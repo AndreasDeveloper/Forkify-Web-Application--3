@@ -1,6 +1,5 @@
 // --- IMPORTING MODELS --- \\
 import { elements } from './base';
-import uniqid from 'uniqid'; // Unique ID
 
 // Render Item UI | Function Export
 export const renderItem = item => {

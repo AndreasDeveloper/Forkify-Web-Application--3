@@ -492,7 +492,18 @@ body {
 
     .add-item__description {
       width: 100%;
+      margin-bottom: 1rem;
+    }
+    .add-item__description::placeholder {
+      text-align: center;
     }
     .add-item__unit {
       width: 45%;
+      margin-left: 5rem;
+      margin-bottom: 1rem;
+    }
+    .add-item__unit::placeholder { text-align: center; }
+    .add-btn {
+      margin-left: 5rem;
+      margin-bottom: 2rem;
     }

@@ -490,6 +490,10 @@ body {
     opacity: 1;
     visibility: visible; }
 
+    .add-item__description,
+    .add-item__unit {
+      outline: none;
+    }
     .add-item__description {
       width: 100%;
       margin-bottom: 1rem;

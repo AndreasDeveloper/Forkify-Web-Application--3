@@ -345,12 +345,12 @@
             <h2 class="heading-2">My Shopping List</h2>
 
                 <!-- Add Item Button -->
-                <button class="btn-small recipe__btn add-btn" style="display: inline-block; width: 50%;">
-                    <span>Add Item</span>
-                </button>
                 <!-- Add Items Input -->
-                <input type="text" placeholder="Insert Item Unit" class="add-item__unit">
-                <input type="text" placeholder="Insert Item Description" class="add-item__description">
+                <form>
+                    <input type="text" placeholder="Insert Item Unit" class="add-item__unit" required>
+                    <input type="text" placeholder="Insert Item Description" class="add-item__description" required>
+                    <input type="submit" class="btn-small recipe__btn add-btn" style="display: inline-block; width: 50%;" placeholder="Add Item">
+                </form>
             <ul class="shopping__list">
                 <!--
                 <li class="shopping__item">

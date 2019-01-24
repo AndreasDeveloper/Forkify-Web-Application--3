@@ -126,20 +126,29 @@ const controlList = () => {
         listView.renderItem(item);
     });
     // Rendering Delete All Items in list button after items were added to the list
-    listView.renderDeleteBtn();
+    if (!elements.deleteBtnWrapper.firstElementChild) { // Checks if button is present
+        listView.renderDeleteBtn();
+    } 
 };
 // Event Listener | Add Custom Item
 elements.addNewItemBtn.addEventListener('click', () => {
     if (!state.list) state.list = new List();
-    const itemI = state.list.addItem(0, elements.addItemUnit.value, elements.addItemDescription.value);
-    listView.renderAddedInput(itemI);
+        // Checks if input fields are not empty
+        if (elements.addItemUnit.value === '' || elements.addItemDescription.value === '') {
+            return console.log('Error');
+        } else {
+            const itemI = state.list.addItem(0, elements.addItemUnit.value, elements.addItemDescription.value);
+            listView.renderAddedInput(itemI);
+            elements.addItemUnit.value = '';
+            elements.addItemDescription.value = '';
 
-    // Resets the input field back to empty after item was added
-    elements.addItemUnit.value = '';
-    elements.addItemDescription.value = '';
-
+            // Checks if button is present
+            if (!elements.deleteBtnWrapper.firstElementChild) {
+                listView.renderDeleteBtn();
+            } 
+        }
     // Rendering Delete All Items in list button after items were added to the list
-    listView.renderDeleteBtn();
+    //listView.renderDeleteBtn();
 }); 
 
 // EVENT LISTENER | Handle delete and update list item events

@@ -164,8 +164,6 @@ elements.addNewItemBtn.addEventListener('click', () => {
                 listView.renderDeleteBtn();
             } 
         }
-    // Rendering Delete All Items in list button after items were added to the list
-    //listView.renderDeleteBtn();
 }); 
 
 // EVENT LISTENER | Handle delete and update list item events

@@ -130,6 +130,23 @@ const controlList = () => {
         listView.renderDeleteBtn();
     } 
 };
+
+// EVENT LISTENER | Restore list items from localStorage
+window.addEventListener('load', () => {
+    state.list = new List();
+    // Restore list of items
+    state.list.readStorage2();
+    // Render the existing list items
+    state.list.items.forEach(item => listView.renderItem(item));
+    if (localStorage.getItem('list') === null || localStorage.getItem('list') === '[]') {
+        return null;
+    } else {
+        if (!elements.deleteBtnWrapper.firstElementChild) { // Checks if button is present
+            listView.renderDeleteBtn();
+        } 
+    }
+});
+
 // Event Listener | Add Custom Item
 elements.addNewItemBtn.addEventListener('click', () => {
     if (!state.list) state.list = new List();
@@ -170,8 +187,9 @@ elements.shopping.addEventListener('click', e => {
 }); 
 
 // EVENT LISTENER | Deletes all of the items inside of a list
-elements.deleteBtnWrapper.addEventListener('click', (event) => {
+elements.deleteBtnWrapper.addEventListener('click', event => {
     if (event.target.classList.contains('delete-list-btn')) {
+        localStorage.removeItem('list'); // Removes the list from local storage
         listView.deleteItems();
         // Deletes button when items are deleted
         while (elements.deleteBtnWrapper.firstChild) {

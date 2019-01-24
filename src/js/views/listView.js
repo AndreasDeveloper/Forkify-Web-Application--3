@@ -56,7 +56,7 @@ export const deleteItem = id => {
 };
 
 // Delete all of the items inside of a ul on UI | Function Export
-export const deleteItems = () => {
+export const deleteItems = id => {
     const items = document.querySelector('.shopping__list');
     items.innerHTML = ''; 
 }
